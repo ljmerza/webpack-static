@@ -4,19 +4,20 @@ const fs = require('fs')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 
-function generateHtmlPlugins (templateDir) {
+function generateHtmlPlugins(templateDir) {
   const templateFiles = fs.readdirSync(path.resolve(__dirname, templateDir))
-
+  
   return templateFiles.map(item => {
     const parts = item.split('.');
     const name = parts[0];
     const extension = parts[1];
+    if(!extension || !/html/i.test(extension)) return;
 
     return new HTMLWebpackPlugin({
       filename: `${name}.html`,
       template: path.resolve(__dirname, `${templateDir}/${name}.${extension}`)
     });
-  });
+  }).filter(a => a);
 }
 
 module.exports = {
