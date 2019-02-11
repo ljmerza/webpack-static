@@ -4,6 +4,11 @@ const fs = require('fs')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 
+/**
+ * 
+ * @param {String} templateDir 
+ * @return {HTMLWebpackPlugin[]}
+ */
 function generateHtmlPlugins(templateDir) {
   const templateFiles = fs.readdirSync(path.resolve(__dirname, templateDir))
   
@@ -63,7 +68,6 @@ module.exports = {
         use: [{
           loader: 'file-loader',
           options: {
-            name: '[name].[ext]',
             outputPath: 'fonts/'
           }
         }]
