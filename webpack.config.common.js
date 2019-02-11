@@ -29,6 +29,9 @@ module.exports = {
   node: {
     fs: 'empty',
   },
+  performance: { 
+    hints: false 
+  },
   entry: ['./src/js/app.js', './src/style/main.scss'],
   output: {
     path: path.resolve(__dirname, 'dist'),
